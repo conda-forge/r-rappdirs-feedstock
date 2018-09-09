@@ -10,33 +10,38 @@ package:
 source:
   fn: rappdirs_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/rappdirs_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/rappdirs/rappdirs_{{ version }}.tar.gz
-
+    - {{ cran_mirror }}/src/contrib/rappdirs_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/rappdirs/rappdirs_{{ version }}.tar.gz
   sha256: 2fd891ec16d28862f65bb57e4a78f77a597930abb59380e757afd8b6c6d3264a
 
 build:
   merge_build_host: True  # [win]
-  number: 1
-  skip: true  # [win32]
+  number: 2
+
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
+
   host:
     - r-base
 
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
 
 test:
   commands:
-    - $R -e "library('rappdirs')"  # [not win]
+    - $R -e "library('rappdirs')"           # [not win]
     - "\"%R%\" -e \"library('rappdirs')\""  # [win]
 
 about:
@@ -52,3 +57,7 @@ extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
