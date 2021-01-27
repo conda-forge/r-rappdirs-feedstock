@@ -1,4 +1,4 @@
-{% set version = '0.3.1' %}
+{% set version = "0.3.2" %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,11 +12,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/rappdirs_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rappdirs/rappdirs_{{ version }}.tar.gz
-  sha256: 2fd891ec16d28862f65bb57e4a78f77a597930abb59380e757afd8b6c6d3264a
+  sha256: 656df024f506121e6e027847d0bbf77cf14930a82462914954141e04a4b211df
 
 build:
-  merge_build_host: True  # [win]
-  number: 1004
+  merge_build_host: true  # [win]
+  number: 0
 
   rpaths:
     - lib/R/lib/
@@ -50,9 +50,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: An easy way to determine which directories on the users computer you should use to
-    save data, caches and logs. A port of Python's 'Appdirs' (\url{https://github.com/ActiveState/appdirs})
-    to R.
+  summary: An easy way to determine which directories on the users computer you should use to save data, caches and logs. A port of Python's 'Appdirs' (\url{https://github.com/ActiveState/appdirs}) to R.
 
 extra:
   recipe-maintainers:
