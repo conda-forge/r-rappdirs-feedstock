@@ -1,4 +1,4 @@
-{% set version = "0.3.3" %}
+{% set version = "0.3.4" %}
 
 {% set posix = 'm2-' if win else '' %}
 
@@ -11,10 +11,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/rappdirs_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rappdirs/rappdirs_{{ version }}.tar.gz
-  sha256: 49959f65b45b0b189a2792d6c1339bef59674ecae92f8c2ed9f26ff9e488c184
+  sha256: 2320ebc9ef3b1a32a1e63f94a6ce2c1c34d66782221a6531e786804f681abc66
 
 build:
-  number: 4
+  number: 0
 
   rpaths:
     - lib/R/lib/
